@@ -1,0 +1,15 @@
+$kind: http-request
+description: Validates a bank slip prior to processing the payment. It receives
+  the digitable line (_linha digitável_) as a query parameter and returns
+  validation data (including a `validationId` to be used in the subsequent
+  step).
+url: "{{core_payments_url}}/api/v1/billpayments?digitable=033998530129700001356\
+  07559001016189020000020271"
+method: GET
+queryParams:
+  digitable: "03399853012970000135607559001016189020000020271"
+body:
+  type: json
+  content: ""
+examples: ./.resources/Validate bank slip.resources/examples
+order: 1000

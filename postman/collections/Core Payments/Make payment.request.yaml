@@ -1,0 +1,22 @@
+$kind: http-request
+description: Processes the payment for a previously validated bank slip.
+  Requires an idempotency header to prevent duplicate payments.
+url: "{{core_payments_url}}/api/v1/billpayments"
+method: POST
+headers:
+  x-idempotency-key: "{{$guid}}"
+body:
+  type: json
+  content: >-
+    {
+    	"validationId": "c79bfab3-6ca3-4f55-9345-dc383266d30d", //payment id from validation step 
+    	"account": {
+    		"branch": "0001",
+    		"number": "123456"
+    	},
+    	"amount": 101.03,
+    	"description": "Some payment description",
+    	"scheduledDate": "2026-09-15"
+    }
+examples: ./.resources/Make payment.resources/examples
+order: 2000

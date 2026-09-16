@@ -1,0 +1,38 @@
+$kind: http-example
+request:
+  url: "{{core_payments_url}}/api/v1/billpayments"
+  method: POST
+  headers:
+    x-idempotency-key: "{{authorization_secret_-_uuid}}"
+  body:
+    type: json
+    content: >-
+      {
+      	"validationId": "c79bfab3-6ca3-4f55-9345-dc383266d30d", //payment id from validation step 
+      	"account": {
+      		"branch": "0001",
+      		"number": "123456"
+      	},
+      	"amount": 101.03,
+      	"description": "Some payment description",
+      	"scheduledDate": "2026-09-15"
+      }
+response:
+  statusCode: 500
+  statusText: Internal Server Error
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+        "errors": [
+          {
+            "code": "INTERNAL_SERVER_ERROR",
+            "messages": [
+              "{{Some error message}}"
+            ]
+          }
+        ]
+      }
+order: 6000

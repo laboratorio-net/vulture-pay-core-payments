@@ -1,0 +1,3 @@
+$kind: collection
+description: "The **Core Payments** collection contains two endpoints related to
+  bank slip payments (_boletos_):"

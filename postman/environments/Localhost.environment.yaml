@@ -1,0 +1,6 @@
+name: Localhost
+values:
+  - key: core_payments_url
+    value: ""
+    enabled: true
+color: null

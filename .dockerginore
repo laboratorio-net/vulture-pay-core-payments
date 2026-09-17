@@ -1,0 +1,11 @@
+.postman/
+.vscode/
+.docs/
+.k8s/
+postman/
+scripts/
+terraform/
+.gitignore
+LICENSE
+README.md
+docker-compose*.yaml

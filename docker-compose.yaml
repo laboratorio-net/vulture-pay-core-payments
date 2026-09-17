@@ -1,0 +1,50 @@
+services:
+  core-payments:
+    image: leandroalves86/vulture-pay-core-payments:latest
+    container_name: core-payments
+    ports:
+      - "5123:5123"
+
+  core-accounts:
+    image: mockako:latest
+    container_name: core-accounts
+    ports:
+      - "5124:5124"
+
+  core-antifraud:
+    image: leandroalves86/vulture-pay-core-antifraud:latest
+    container_name: core-antifraud
+
+  core-transactional:
+    image: leandroalves86/vulture-pay-core-transactional:latest
+    container_name: core-transactional
+
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server
+    environment:
+      SA_PASSWORD: "YourStrong!Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
+  mongo-db:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"

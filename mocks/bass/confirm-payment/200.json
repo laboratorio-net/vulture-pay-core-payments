@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "POST",
+    "route": "baas/v2/billpayment"
+  },
+  "response": {
+    "status": "OK",
+    "body": {
+      "clientRequestId": "5555",
+      "amount": 59.9,
+      "account": "333333",
+      "transactionIdAuthorize": 321,
+      "tags": [
+        {
+          "key": "PaymentType",
+          "value": "Contas Internas"
+        }
+      ],
+      "barCodeInfo": {
+        "digitable": "23793381286008301352856000063307789840000150000",
+        "barCode": "23797898400001500003381260083013525600006330"
+      }
+    }
+  }
+}

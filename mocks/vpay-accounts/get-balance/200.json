@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "route": "api/v1/accounts/{account_number}/balance"
+  },
+  "response": {
+    "status": "OK",
+    "body": {
+      "branch": "0001",
+      "number": "<#=Request.Route["account_number"]#>",
+      "status": "ACTIVE",
+      "type": "Checking",
+      "createdAt": "2023-11-11T19:19:10.6088722",
+      "updatedAt": "2024-09-19T18:45:44.3885649Z",
+      "balance": {        
+        "available": {
+          "amount": 99999999.00,
+          "currency": "BRL"
+        },
+        "blocked": {
+          "amount": 0.0,
+          "currency": "BRL"
+        }
+      },
+      "holder": {
+        "documentNumber": "37798821830",
+        "name": "João da Silva Sauro",
+        "holderType": "CUSTOMER",
+        "createAt": "2023-11-11T19:18:39.8015774",
+        "status": "APPROVED"
+      }
+    }
+  }
+}

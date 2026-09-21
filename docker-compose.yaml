@@ -14,25 +14,35 @@ services:
     mem_limit: 124m
     cpus: 0.3
 
+  core-accounts:
+    image: natenho/mockaco:1.9.14
+    container_name: vulture-pay-core-accounts
+    ports:
+      - 6902:5000
+    volumes:
+      - ./mocks/vpay-accounts:/app/Mocks:ro
+      - ./mocks/cert:/https:ro
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password123
+      - ASPNETCORE_URLS=http://*:5000
+    mem_limit: 124m
+    cpus: 0.3
+
   core-payments:
     image: leandroalves86/vulture-pay-core-payments:latest
-    container_name: core-payments
+    container_name: vulture-pay-core-payments
     ports:
       - "5123:5123"
 
-  core-accounts:
-    image: mockako:latest
-    container_name: core-accounts
-    ports:
-      - "5124:5124"
 
   core-antifraud:
     image: leandroalves86/vulture-pay-core-antifraud:latest
-    container_name: core-antifraud
+    container_name: vulture-pay-core-antifraud
 
   core-transactional:
     image: leandroalves86/vulture-pay-core-transactional:latest
-    container_name: core-transactional
+    container_name: vulture-pay-core-transactional
 
 
   sql-server:

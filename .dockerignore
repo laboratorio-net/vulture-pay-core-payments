@@ -1,3 +1,10 @@
+**/bin/
+**/obj/
+.git/
+.vscode/
+.gitignore
+Dockerfile
+
 .postman/
 .vscode/
 .docs/
@@ -5,7 +12,6 @@
 postman/
 scripts/
 terraform/
-.gitignore
 LICENSE
 README.md
 docker-compose*.yaml

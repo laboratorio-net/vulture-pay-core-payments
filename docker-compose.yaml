@@ -34,15 +34,52 @@ services:
     container_name: vulture-pay-core-payments
     ports:
       - "5123:5123"
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
 
 
   core-antifraud:
-    image: leandroalves86/vulture-pay-core-antifraud:latest
+    image: leandroalves86/amqp.mock:1.0.0.beta01
     container_name: vulture-pay-core-antifraud
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - Rabbit__UserName=${RABBIT_USERNAME}
+      - Rabbit__Password=${RABBIT_PASSWORD}
+      - Rabbit__VirtualHost=${RABBIT_VIRTUALHOST}
+      - Rabbit__Port=${RABBIT_PORT}
+      - Rabbit__HostName=${RABBIT_HOSTNAME}
+      - Rabbit__Endpoints__0=${RABBIT_ENDPOINT}
+      - Rabbit__Queues__0__ExchangeOrigin=core.antifraud.exchange
+      - Rabbit__Queues__0__ExchangeTypeOrigin=direct
+      - Rabbit__Queues__0__QueueOrigin=core.antifraud.queue
+      - Rabbit__Queues__0__ExchangeDestination=core.payments.saga
+      - Rabbit__Queues__0__ExchangeTypeDestination=direct
+      - Rabbit__Queues__0__QueuesDestination__0=core.payments.queue.01
+      - Rabbit__Queues__0__QueuesDestination__1=core.payments.queue.02
+    mem_limit: 64m
+    cpus: 0.2
+
 
   core-transactional:
-    image: leandroalves86/vulture-pay-core-transactional:latest
+    image: leandroalves86/amqp.mock:1.0.0.beta01
     container_name: vulture-pay-core-transactional
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=${ASPNETCORE_ENVIRONMENT}
+      - Rabbit__UserName=${RABBIT_USERNAME}
+      - Rabbit__Password=${RABBIT_PASSWORD}
+      - Rabbit__VirtualHost=${RABBIT_VIRTUALHOST}
+      - Rabbit__Port=${RABBIT_PORT}
+      - Rabbit__HostName=${RABBIT_HOSTNAME}
+      - Rabbit__Endpoints__0=${RABBIT_ENDPOINT}
+      - Rabbit__Queues__0__ExchangeOrigin=core.transactional.exchange
+      - Rabbit__Queues__0__ExchangeTypeOrigin=direct
+      - Rabbit__Queues__0__QueueOrigin=core.transactional.queue
+      - Rabbit__Queues__0__ExchangeDestination=core.payments.saga
+      - Rabbit__Queues__0__ExchangeTypeDestination=direct
+      - Rabbit__Queues__0__QueuesDestination__0=core.payments.queue.01
+      - Rabbit__Queues__0__QueuesDestination__1=core.payments.queue.02
+    mem_limit: 64m
+    cpus: 0.2
 
 
   sql-server:
@@ -68,7 +105,7 @@ services:
       - "6379:6379"
 
   rabbitmq:
-    image: rabbitmq:management
+    image: rabbitmq:3-management
     container_name: rabbitmq
     ports:
       - "5672:5672"

@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/mocks/">
+    <Project Path="mocks/Amqp.Mock/Amqp.Mock.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Vulture.Pay.Core.Payments/Vulture.Pay.Core.Payments.csproj" />
+  </Folder>
+</Solution>
